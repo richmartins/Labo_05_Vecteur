@@ -12,9 +12,14 @@ Compilateur    : Mingw-w64 g++ 8.1.0
 #ifndef LABO_05_VECTEUR_LIBRAIRIE_H
 #define LABO_05_VECTEUR_LIBRAIRIE_H
     #include <vector>
+    #include <ostream>
 
     using Vecteur = std::vector<int>;
     using Matrice = std::vector<Vecteur>;
+
+
+    std::ostream& operator<<(std::ostream& os, const Vecteur& v);
+    std::ostream& operator<<(std::ostream& os, const Matrice& m);
 
     bool estCarree(Matrice&);
 
@@ -22,7 +27,7 @@ Compilateur    : Mingw-w64 g++ 8.1.0
 
     size_t maxCol(Matrice&);
 
-    void vectSommeMin();
+    void vectSommeMin(Matrice&);
 
     void shuffleMatrice(Matrice m);
 
