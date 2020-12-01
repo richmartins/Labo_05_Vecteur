@@ -27,11 +27,11 @@ Compilateur    : Mingw-w64 g++ 8.1.0
 
     size_t maxCol(Matrice&);
 
-    void vectSommeMin(Matrice&);
+    Vecteur vectSommeMin(Matrice&);
 
     void shuffleMatrice(Matrice m);
 
-    void sortMatrice();
+    void sortMatrice(const Matrice&);
 
     bool sommeDiagDG();
 

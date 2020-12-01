@@ -22,7 +22,6 @@ int sommeVect(Vecteur& v){
     return sum;
 }
 
-
 std::ostream& operator<<(std::ostream& os, const Vecteur& v) {
     os << "(";
     for(Vecteur::const_iterator i = v.begin(); i != v.end(); ++i){
@@ -69,9 +68,9 @@ bool EstReguliere(Matrice& m){
     const size_t PREMIERE_LIGNE = m[0].size();
 
     //TODO: do it without anonymous fonction
-    if(std::all_of(m.begin(), m.end(), [premiereLigne](const Vecteur& ligne) {return ligne.size() != premiereLigne;})){
-      return false;
-    }
+//    if(std::all_of(m.begin(), m.end(), [premiereLigne](const Vecteur& ligne) {return ligne.size() != premiereLigne;})){
+//      return false;
+//    }
     return true;
 }
 
@@ -87,19 +86,35 @@ size_t maxCol(Matrice& m){
     return maxCol;
 }
 
-void vectSommeMin(Matrice& m){
-    int vectMinSomme = 0;
-    for(auto i = m.begin(); i != m.begin(); ++i){
-        if(i == m.begin() || vectMinSomme > sommeVect(*i))
-            vectMinSomme = sommeVect(*i);
+Vecteur sommeLigne(Matrice& m){
+    Vecteur totSum;
+
+    for( Vecteur& i : m){
+        totSum.push_back(sommeVect(i));
     }
+
+    return totSum;
+}
+
+Vecteur vectSommeMin(Matrice& m){
+    Vecteur minVect;
+    for(auto i = m.begin(); i != m.begin(); ++i){
+        if(i == m.begin() || sommeVect(minVect) > sommeVect(*i))
+            minVect = *i;
+    }
+
+    return minVect;
 }
 
 void shuffleMatrice(Matrice m){
 
 }
 
-void sortMatrice(){}
+void sortMatrice(const Matrice& m){
+    for(const Vecteur& i : m){
+        std::sort(i.begin(), i.end(), std::greater<>());
+    }
+}
 
 bool sommeDiagDG(){
 
