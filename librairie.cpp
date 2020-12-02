@@ -116,13 +116,57 @@ void sortMatrice(const Matrice& m){
     }
 }
 
-bool sommeDiagDG(){
+bool sommeDiagDG(const Matrice& m){ // </>
 
-    return true;
+   Vecteur lignes;
+   bool ok = false;
+   int somme = 0;
+   size_t taille = m.size();
+   size_t taille2 = lignes.size();
+
+   if( !lignes.empty() && taille > 1){
+
+      for( size_t i = 0; i < taille; ++i){
+         for( size_t j = 0; j < taille2; ++j){
+
+               if( i + j == taille - 1){
+
+                  ok = false;
+
+               somme += m.at(i).at(j);
+
+                  return ok;
+               }
+         }
+      }
+   }
+
+    return ok;
 }
 
-bool sommeDiagGD(){
+bool sommeDiagGD(const Matrice& m){// <\>
 
-    return true;
+   Vecteur lignes;
+   bool ok = false;
+   int somme = 0;
+
+   if( !lignes.empty() && m.size() > 1){
+
+      for( size_t i = 0; i < m.size(); ++i){
+         for( size_t j = 0; j < lignes.size(); ++j){
+
+            if( j == i){
+
+               ok = true;
+
+               somme += m.at(i).at(j);
+
+               return ok;
+            }
+
+         }
+      }
+   }
+   return ok;
 }
 

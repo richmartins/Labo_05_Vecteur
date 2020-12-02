@@ -33,9 +33,9 @@ Compilateur    : Mingw-w64 g++ 8.1.0
 
     void sortMatrice(const Matrice&);
 
-    bool sommeDiagDG();
+    bool sommeDiagDG(Matrice& m);
 
-    bool sommeDiagGD();
+    bool sommeDiagGD(Matrice m);
 
 
 #endif //LABO_05_VECTEUR_LIBRAIRIE_H
