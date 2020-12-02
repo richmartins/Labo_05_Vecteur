@@ -116,11 +116,16 @@ void sortMatrice(const Matrice& m){
     }
 }
 
-bool sommeDiagDG(const Matrice& m){ // </>
+bool sommeDiagDG(const Matrice& m, int& resultat){ // </>
 
    Vecteur lignes;
+
    bool ok = false;
+
    int somme = 0;
+
+   resultat = somme;
+
    size_t taille = m.size();
    size_t taille2 = lignes.size();
 
@@ -144,11 +149,15 @@ bool sommeDiagDG(const Matrice& m){ // </>
     return ok;
 }
 
-bool sommeDiagGD(const Matrice& m){// <\>
+bool sommeDiagGD(const Matrice& m, int& resultat){// <\>
 
    Vecteur lignes;
+
    bool ok = false;
+
    int somme = 0;
+
+   resultat = somme;
 
    if( !lignes.empty() && m.size() > 1){
 
