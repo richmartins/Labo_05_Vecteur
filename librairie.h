@@ -21,21 +21,23 @@ Compilateur    : Mingw-w64 g++ 8.1.0
     std::ostream& operator<<(std::ostream& os, const Vecteur& v);
     std::ostream& operator<<(std::ostream& os, const Matrice& m);
 
-    bool estCarree(Matrice&);
+    bool estReguliere(const Matrice&);
 
-    bool EstReguliere(Matrice&);
+    bool estCarree(const Matrice&);
 
     size_t maxCol(Matrice&);
 
+    Vecteur sommeLigne(const Matrice&);
+
     Vecteur vectSommeMin(Matrice&);
 
-    void shuffleMatrice(Matrice m);
+    void shuffleMatrice(Matrice&);
 
-    void sortMatrice(const Matrice&);
+    void sortMatrice(Matrice&);
 
-    bool sommeDiagDG();
+    bool sommeDiagDG(const Matrice& m, int somme);
 
-    bool sommeDiagGD();
+    bool sommeDiagGD(const Matrice& m, int somme);
 
 
 #endif //LABO_05_VECTEUR_LIBRAIRIE_H

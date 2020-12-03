@@ -13,16 +13,19 @@ Compilateur    : Mingw-w64 g++ 8.1.0
 
 #include <vector>
 #include <algorithm>
+#include <numeric>
+#include <chrono>
+#include <random>
 
-int sommeVect(Vecteur& v){
-    int sum = 0;
-    for(auto i : v){
-        sum += i;
-    }
-    return sum;
+int sommeVect(const Vecteur& v){
+    return std::accumulate(v.begin(), v.end(), 0);
 }
 
-std::ostream& operator<<(std::ostream& os, const Vecteur& v) {
+size_t taille(Vecteur& v){
+    return v.size();
+}
+
+std::ostream& operator<<(std::ostream& os, const Vecteur& v){
     os << "(";
     for(Vecteur::const_iterator i = v.begin(); i != v.end(); ++i){
         if (i!=v.begin()){
@@ -35,94 +38,93 @@ std::ostream& operator<<(std::ostream& os, const Vecteur& v) {
     return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const Matrice& m) {
+std::ostream& operator<<(std::ostream& os, const Matrice& m){
     os << "[";
     for(Matrice::const_iterator i = m.begin(); i != m.end(); ++i){
         if(i != m.begin())
             os << ", ";
-        os << "(" << *i << ")";
+        os << *i;
     }
     os << "]";
+
+    return os;
 }
 
-bool estCarree(Matrice& m){
-    size_t nbrLigne = 0;
-    const size_t PREMIERE_LIGNE = m[0].size();
 
-    for(const Vecteur& ligne : m){
-        if(ligne.size() != PREMIERE_LIGNE){
-            return false;
-        } else {
-            ++nbrLigne;
+bool estReguliere(const Matrice& m){
+    size_t PREMIERE_LIGNE = m[0].size();
+
+    if(not(m.empty())){
+        for(const auto & i : m){
+            if(PREMIERE_LIGNE != i.size()){
+                return false;
+            }
         }
     }
 
-    if(nbrLigne == PREMIERE_LIGNE){
-        return true;
-    }
-    return false;
-}
-
-bool EstReguliere(Matrice& m){
-
-    const size_t PREMIERE_LIGNE = m[0].size();
-
-    //TODO: do it without anonymous fonction
-//    if(std::all_of(m.begin(), m.end(), [premiereLigne](const Vecteur& ligne) {return ligne.size() != premiereLigne;})){
-//      return false;
-//    }
     return true;
 }
 
-size_t maxCol(Matrice& m){
-    size_t maxCol = m[0].size();
 
-    for(const Vecteur& ligne : m){
-        if(ligne.size() > maxCol){
-            maxCol = ligne.size();
-        }
-    }
-
-    return maxCol;
+bool estCarree(const Matrice& m){
+    return m.empty() || (estReguliere(m) && m[0].size() == m.size());
 }
 
-Vecteur sommeLigne(Matrice& m){
-    Vecteur totSum;
 
-    for( Vecteur& i : m){
-        totSum.push_back(sommeVect(i));
-    }
+size_t maxCol(Matrice& m){
+    Vecteur tailles(m.size());
+
+    std::transform(m.begin(), m.end(), tailles.begin(), taille);
+
+    return static_cast<size_t>(*std::max_element(tailles.begin(), tailles.end()));
+}
+
+Vecteur sommeLigne(const Matrice& m){
+    Vecteur totSum(m.size());
+
+    std::transform(m.begin(), m.end(), totSum.begin(), sommeVect);
 
     return totSum;
 }
 
 Vecteur vectSommeMin(Matrice& m){
-    Vecteur minVect;
-    for(auto i = m.begin(); i != m.begin(); ++i){
-        if(i == m.begin() || sommeVect(minVect) > sommeVect(*i))
-            minVect = *i;
-    }
+    // trouver l'index ou la sommes du vecteur et le minimum
+    Vecteur v = sommeLigne(m);
+    size_t index = static_cast<size_t>(std::min_element(v.begin(), v.end()) - v.begin());
 
-    return minVect;
+    // retourner le vecteur de m à index trouver
+    return m[index];
 }
 
-void shuffleMatrice(Matrice m){
 
+// source: http://www.cplusplus.com/reference/algorithm/shuffle/
+void shuffleMatrice(Matrice& m){
+    unsigned seed = static_cast<unsigned>(std::chrono::system_clock::now().time_since_epoch().count());
+    shuffle (m.begin(), m.end(), std::default_random_engine(seed));
 }
 
-void sortMatrice(const Matrice& m){
-    for(const Vecteur& i : m){
+void sortMatrice(Matrice& m){
+    for(Vecteur& i : m){
         std::sort(i.begin(), i.end(), std::greater<>());
     }
 }
-
-bool sommeDiagDG(){
-
-    return true;
-}
-
-bool sommeDiagGD(){
-
-    return true;
-}
-
+//
+//bool sommeDiagDG(const Matrice& m, int somme){
+//    if(estCarree(m)){
+//
+//    }
+//
+//}
+//
+//bool sommeDiagGD(const Matrice& m, int somme){
+//    if(estCarree(m)){
+//        for(size_t i = 0; i < m.size(); ++i){
+//            somme += m[i][i];
+//        }
+//
+//        return true;
+//    }
+//
+//    return false;
+//}
+//
