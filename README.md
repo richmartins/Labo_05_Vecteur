@@ -1,6 +1,6 @@
 # Labo 05 Vecteur
 
-Laboratoire N°4 HEIG-VD, 2020-2021 PRG1
+Laboratoire N°5 HEIG-VD, 2020-2021 PRG1
 
 ## Enoncé
 
