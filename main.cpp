@@ -160,7 +160,7 @@ int main() {
 
     cout << "\nsommeDiagDG" << endl;
     int resultat1 = 0,
-            resultat2 = 0;
+        resultat2 = 0;
 
     Matrice m16 = {
             {1, 2, 3},
@@ -182,7 +182,7 @@ int main() {
     cout << "\nsommeDiagGD" << endl;
 
     resultat1 = 0,
-            resultat2 = 0;
+    resultat2 = 0;
 
     Matrice m18 = {
             {1, 2, 3},
