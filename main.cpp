@@ -174,10 +174,12 @@ int main() {
     };
 
     cout << "m16 :  " << m16 << endl;
-    cout << "somme diag. gauche droite -> " << sommeDiagDG(m16, resultat1) << " somme: " << resultat1 << endl;
+    cout << "somme diag. gauche droite -> " << sommeDiagDG(m16, resultat1) << " somme: "
+         << resultat1 << endl;
 
     cout << "m17 :  " << m17 << endl;
-    cout << "somme diag. gauche droite -> " << sommeDiagDG(m17, resultat2) << " somme: " << resultat2 << endl;
+    cout << "somme diag. gauche droite -> " << sommeDiagDG(m17, resultat2) << " somme: "
+         << resultat2 << endl;
 
     cout << "\nsommeDiagGD" << endl;
 
@@ -197,10 +199,12 @@ int main() {
     };
 
     cout << "m18 :  " << m18 << endl;
-    cout << "somme diag. gauche droite -> " << sommeDiagGD(m18, resultat1) << " somme: " << resultat1 << endl;
+    cout << "somme diag. gauche droite -> " << sommeDiagGD(m18, resultat1) << " somme: "
+         << resultat1 << endl;
 
     cout << "m19 :  " << m19 << endl;
-    cout << "somme diag. gauche droite -> " << sommeDiagGD(m19, resultat2) << " somme: " << resultat2 << endl;
+    cout << "somme diag. gauche droite -> " << sommeDiagGD(m19, resultat2) << " somme: "
+         << resultat2 << endl;
 
     return EXIT_SUCCESS;
 }

@@ -1,7 +1,8 @@
 # builds
 
 cmake-build-debug/
+rendu/
 
 # IDE
-
+.DS_Store
 .idea/
